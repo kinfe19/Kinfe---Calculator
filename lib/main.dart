@@ -13,7 +13,7 @@ var userQuestion2 = '';
 var userAnswer2 = '';
 
 bool _darktheme =
-    false; // the is actually useless, but 'SwitchListTile' and 'onChanged' require it
+    false;
 
 class MyApp extends StatelessWidget {
   @override
