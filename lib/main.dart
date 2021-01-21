@@ -6,6 +6,15 @@ import 'package:math_expressions/math_expressions.dart';
 
 void main() => runApp(MyApp());
 
+var userQuestion = '';
+var userAnswer = '';
+
+var userQuestion2 = '';
+var userAnswer2 = '';
+
+bool _darktheme =
+    false; // the is actually useless, but 'SwitchListTile' and 'onChanged' require it
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,9 +33,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var userQuestion = '';
-  var userAnswer = '';
-
   final myTextStyle = TextStyle(fontSize: 30, color: Colors.deepPurple[900]);
 
   final List<String> buttons = [
@@ -191,9 +197,6 @@ class SCalculator extends StatefulWidget {
 }
 
 class _SCalculatorState extends State<SCalculator> {
-  var userQuestion = '';
-  var userAnswer = '';
-
   final myTextStyle = TextStyle(fontSize: 30, color: Colors.deepPurple[900]);
 
   final List<String> buttons = [
@@ -237,7 +240,7 @@ class _SCalculatorState extends State<SCalculator> {
                   Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerLeft,
-                    child: Text(userQuestion,
+                    child: Text(userQuestion2,
                         style:
                             TextStyle(fontSize: 30, color: Colors.deepPurple)),
                   ),
@@ -245,7 +248,7 @@ class _SCalculatorState extends State<SCalculator> {
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
                     child: Text(
-                      userAnswer,
+                      userAnswer2,
                       style: TextStyle(fontSize: 30, color: Colors.deepPurple),
                     ),
                   )
@@ -267,8 +270,8 @@ class _SCalculatorState extends State<SCalculator> {
                       return MyButton(
                         buttonTapped: () {
                           setState(() {
-                            userQuestion = '';
-                            userAnswer = '';
+                            userQuestion2 = '';
+                            userAnswer2 = '';
                           });
                         },
                         buttonText: buttons[index],
@@ -282,8 +285,8 @@ class _SCalculatorState extends State<SCalculator> {
                       return MyButton(
                         buttonTapped: () {
                           setState(() {
-                            userQuestion = userQuestion.substring(
-                                0, userQuestion.length - 1);
+                            userQuestion2 = userQuestion2.substring(
+                                0, userQuestion2.length - 1);
                           });
                         },
                         buttonText: buttons[index],
@@ -311,7 +314,7 @@ class _SCalculatorState extends State<SCalculator> {
                       return MyButton(
                         buttonTapped: () {
                           setState(() {
-                            userQuestion += buttons[index];
+                            userQuestion2 += buttons[index];
                           });
                         },
                         buttonText: buttons[index],
@@ -344,16 +347,16 @@ class _SCalculatorState extends State<SCalculator> {
   }
 
   void equalPressed() {
-    String finalQuestion = userQuestion;
-    finalQuestion = finalQuestion.replaceAll('×', '*');
-    finalQuestion = finalQuestion.replaceAll('%', '*0.01');
+    String finalQuestion2 = userQuestion2;
+    finalQuestion2 = finalQuestion2.replaceAll('×', '*');
+    finalQuestion2 = finalQuestion2.replaceAll('%', '*0.01');
 
     Parser p = Parser();
-    Expression exp = p.parse(finalQuestion);
+    Expression exp = p.parse(finalQuestion2);
     ContextModel cm = ContextModel();
     double eval = exp.evaluate(EvaluationType.REAL, cm);
 
-    userAnswer = eval.toString();
+    userAnswer2 = eval.toString();
   }
 }
 
@@ -363,9 +366,6 @@ class Settings extends StatefulWidget {
 }
 
 class SettingsState extends State<Settings> {
-  bool _darktheme =
-      false; // the is actually useless, but 'SwitchListTile' and 'onChanged' require it
-
   void changeTheme() {
     ThemeBuilder.of(context).changeTheme();
   }
