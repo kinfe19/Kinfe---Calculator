@@ -23,7 +23,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final myTextStyle = TextStyle(fontSize: 30, color: Colors.deepPurple[900]);
+  final myTextStyle = TextStyle(fontSize: 30, color: Colors.teal[300]);
 
   final List<String> buttons = [
     'C',
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple[100],
+      backgroundColor: Colors.teal[100],
       body: Column(
         children: <Widget>[
           Expanded(
@@ -67,14 +67,14 @@ class _HomePageState extends State<HomePage> {
                     alignment: Alignment.centerLeft,
                     child: Text(userQuestion,
                         style:
-                            TextStyle(fontSize: 30, color: Colors.deepPurple)),
+                            TextStyle(fontSize: 30, color: Colors.teal[900])),
                   ),
                   Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
                     child: Text(
                       userAnswer,
-                      style: TextStyle(fontSize: 30, color: Colors.deepPurple),
+                      style: TextStyle(fontSize: 30, color: Colors.teal[900]),
                     ),
                   )
                 ],
@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         buttonText: buttons[index],
-                        color: Colors.deepPurple,
+                        color: Colors.teal[300],
                         textColor: Colors.white,
                       );
                     }
@@ -137,28 +137,25 @@ class _HomePageState extends State<HomePage> {
                     // Rest of the buttons
                     else {
                       return MyButton(
-                        buttonTapped: () {
-                          if (userQuestion.length == 18) {
-                            setState(() {
-                              // ignore: deprecated_member_use
-                              Scaffold.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      'Maximum number of digits (18) exceeded.')));
-                            });
-                          } else {
-                            setState(() {
-                              userQuestion += buttons[index];
-                            });
-                          }
-                        },
-                        buttonText: buttons[index],
-                        color: isOperator(buttons[index])
-                            ? Colors.deepPurple
-                            : Colors.deepPurple[50],
-                        textColor: isOperator(buttons[index])
-                            ? Colors.white
-                            : Colors.deepPurple,
-                      );
+                          buttonTapped: () {
+                            if (userQuestion.length == 18) {
+                              setState(() {
+                                // ignore: deprecated_member_use
+                                Scaffold.of(context).showSnackBar(SnackBar(
+                                    content: Text(
+                                        'Maximum number of digits (18) exceeded.')));
+                              });
+                            } else {
+                              setState(() {
+                                userQuestion += buttons[index];
+                              });
+                            }
+                          },
+                          buttonText: buttons[index],
+                          color: isOperator(buttons[index])
+                              ? Colors.teal[300]
+                              : Colors.teal,
+                          textColor: Colors.white);
                     }
                   }),
             ),
