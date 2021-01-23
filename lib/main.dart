@@ -10,6 +10,12 @@ var userAnswer = '';
 var userQuestion2 = '';
 var userAnswer2 = '';
 
+<<<<<<< HEAD
+=======
+bool _darktheme =
+    false;
+
+>>>>>>> 0837d2aad5509fd1d5d79a7200281a08f7b35b5d
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
