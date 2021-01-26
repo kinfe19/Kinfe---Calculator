@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                         buttonTapped: () {
                           setState(() {
                             userQuestion = '';
-                            userAnswer = '';
+                            // (this optional, I didn't want it to be in the app) userAnswer = '';
                           });
                         },
                         buttonText: buttons[index],
@@ -134,16 +134,40 @@ class _HomePageState extends State<HomePage> {
                       );
                     }
 
+                    // ANS Button
+                    else if (index == 18) {
+                      return MyButton(
+                        buttonTapped: () {
+                          var temp = userQuestion.length + userAnswer.length;
+                          if (temp >= 17) {
+                            setState(() {
+                              // ignore: deprecated_member_use
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                  content: Text(
+                                      'Maximum number of digits (17) exceeded.')));
+                            });
+                          } else {
+                            setState(() {
+                              userQuestion += userAnswer;
+                            });
+                          }
+                        },
+                        buttonText: buttons[index],
+                        color: Colors.teal[300],
+                        textColor: Colors.white,
+                      );
+                    }
+
                     // Rest of the buttons
                     else {
                       return MyButton(
                           buttonTapped: () {
-                            if (userQuestion.length == 18) {
+                            if (userQuestion.length >= 17) {
                               setState(() {
                                 // ignore: deprecated_member_use
                                 Scaffold.of(context).showSnackBar(SnackBar(
                                     content: Text(
-                                        'Maximum number of digits (18) exceeded.')));
+                                        'Maximum number of digits (17) exceeded.')));
                               });
                             } else {
                               setState(() {
