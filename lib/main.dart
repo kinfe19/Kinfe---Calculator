@@ -1,14 +1,17 @@
 import 'buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(new MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+}
 
 var userQuestion = '';
 var userAnswer = '';
 
-var userQuestion2 = '';
-var userAnswer2 = '';
+double fontSize = 30;
 
 class MyApp extends StatelessWidget {
   @override
@@ -23,13 +26,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final myTextStyle = TextStyle(fontSize: 30, color: Colors.teal[300]);
+  final myTextStyle = TextStyle(fontSize: fontSize, color: Colors.teal[300]);
 
   final List<String> buttons = [
     'C',
     'DEL',
     '%',
-    '/',
+    '÷',
     '7',
     '8',
     '9',
@@ -45,7 +48,7 @@ class _HomePageState extends State<HomePage> {
     '0',
     '.',
     'ANS',
-    '=',
+    '='
   ];
 
   @override
@@ -59,138 +62,135 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    alignment: Alignment.centerLeft,
-                    child: Text(userQuestion,
-                        style:
-                            TextStyle(fontSize: 30, color: Colors.teal[900])),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      alignment: Alignment.centerLeft,
+                      child: Text(userQuestion,
+                          style: TextStyle(
+                              fontSize: fontSize, color: Colors.teal[900])),
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.centerRight,
                     child: Text(
                       userAnswer,
-                      style: TextStyle(fontSize: 30, color: Colors.teal[900]),
+                      style: TextStyle(
+                          fontSize: fontSize, color: Colors.teal[900]),
                     ),
                   )
                 ],
               ),
             ),
           ),
-          Expanded(
-            flex: 3,
-            child: Container(
-              child: GridView.builder(
-                  primary: false,
-                  itemCount: buttons.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4),
-                  itemBuilder: (BuildContext context, int index) {
-                    // Clear Button
-                    if (index == 0) {
-                      return MyButton(
-                        buttonTapped: () {
+          GridView.builder(
+              shrinkWrap: true,
+              primary: false,
+              itemCount: buttons.length,
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+              itemBuilder: (BuildContext context, int index) {
+                // Clear Button
+                if (index == 0) {
+                  return MyButton(
+                    buttonTapped: () {
+                      setState(() {
+                        userQuestion = '';
+                        userAnswer = '';
+                      });
+                    },
+                    buttonText: buttons[index],
+                    color: Colors.green,
+                    textColor: Colors.white,
+                  );
+                }
+
+                // Delete Button
+                else if (index == 1) {
+                  return MyButton(
+                    buttonTapped: () {
+                      setState(() {
+                        userQuestion =
+                            userQuestion.substring(0, userQuestion.length - 1);
+                      });
+                    },
+                    buttonText: buttons[index],
+                    color: Colors.red,
+                    textColor: Colors.white,
+                  );
+                }
+
+                // Equal Button
+                else if (index == buttons.length - 1) {
+                  return MyButton(
+                    buttonTapped: () {
+                      setState(() {
+                        equalPressed();
+                      });
+                    },
+                    buttonText: buttons[index],
+                    color: Colors.teal[300],
+                    textColor: Colors.white,
+                  );
+                }
+
+                // ANS Button
+                else if (index == 18) {
+                  return MyButton(
+                    buttonTapped: () {
+                      var temp = userQuestion.length + userAnswer.length;
+                      if (temp > 17) {
+                        setState(() {
+                          // ignore: deprecated_member_use
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text(
+                                  'Maximum number of digits (17) exceeded.')));
+                        });
+                      } else {
+                        setState(() {
+                          userQuestion += userAnswer;
+                        });
+                      }
+                    },
+                    buttonText: buttons[index],
+                    color: Colors.teal[300],
+                    textColor: Colors.white,
+                  );
+                }
+
+                // Rest of the buttons
+                else {
+                  return MyButton(
+                      buttonTapped: () {
+                        if (userQuestion.length >= 17) {
                           setState(() {
-                            userQuestion = '';
-                            // (this optional, I didn't want it to be in the app) userAnswer = '';
+                            // ignore: deprecated_member_use
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'Maximum number of digits (17) exceeded.')));
                           });
-                        },
-                        buttonText: buttons[index],
-                        color: Colors.green,
-                        textColor: Colors.white,
-                      );
-                    }
-
-                    // Delete Button
-                    else if (index == 1) {
-                      return MyButton(
-                        buttonTapped: () {
+                        } else {
                           setState(() {
-                            userQuestion = userQuestion.substring(
-                                0, userQuestion.length - 1);
+                            userQuestion += buttons[index];
                           });
-                        },
-                        buttonText: buttons[index],
-                        color: Colors.red,
-                        textColor: Colors.white,
-                      );
-                    }
-
-                    // Equal Button
-                    else if (index == buttons.length - 1) {
-                      return MyButton(
-                        buttonTapped: () {
-                          setState(() {
-                            equalPressed();
-                          });
-                        },
-                        buttonText: buttons[index],
-                        color: Colors.teal[300],
-                        textColor: Colors.white,
-                      );
-                    }
-
-                    // ANS Button
-                    else if (index == 18) {
-                      return MyButton(
-                        buttonTapped: () {
-                          var temp = userQuestion.length + userAnswer.length;
-                          if (temp >= 17) {
-                            setState(() {
-                              // ignore: deprecated_member_use
-                              Scaffold.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      'Maximum number of digits (17) exceeded.')));
-                            });
-                          } else {
-                            setState(() {
-                              userQuestion += userAnswer;
-                            });
-                          }
-                        },
-                        buttonText: buttons[index],
-                        color: Colors.teal[300],
-                        textColor: Colors.white,
-                      );
-                    }
-
-                    // Rest of the buttons
-                    else {
-                      return MyButton(
-                          buttonTapped: () {
-                            if (userQuestion.length >= 17) {
-                              setState(() {
-                                // ignore: deprecated_member_use
-                                Scaffold.of(context).showSnackBar(SnackBar(
-                                    content: Text(
-                                        'Maximum number of digits (17) exceeded.')));
-                              });
-                            } else {
-                              setState(() {
-                                userQuestion += buttons[index];
-                              });
-                            }
-                          },
-                          buttonText: buttons[index],
-                          color: isOperator(buttons[index])
-                              ? Colors.teal[300]
-                              : Colors.teal,
-                          textColor: Colors.white);
-                    }
-                  }),
-            ),
-          ),
+                        }
+                      },
+                      buttonText: buttons[index],
+                      color: isOperator(buttons[index])
+                          ? Colors.teal[300]
+                          : Colors.teal,
+                      textColor: Colors.white);
+                }
+              }),
         ],
       ),
     );
   }
 
   bool isOperator(String x) {
-    if (x == '%' || x == '/' || x == '×' || x == '-' || x == '+' || x == '=') {
+    if (x == '%' || x == '÷' || x == '×' || x == '-' || x == '+' || x == '=') {
       return true;
     }
     return false;
@@ -200,6 +200,7 @@ class _HomePageState extends State<HomePage> {
     String finalQuestion = userQuestion;
     finalQuestion = finalQuestion.replaceAll('×', '*');
     finalQuestion = finalQuestion.replaceAll('%', '*0.01');
+    finalQuestion = finalQuestion.replaceAll('÷', '/');
 
     Parser p = Parser();
     Expression exp = p.parse(finalQuestion);
