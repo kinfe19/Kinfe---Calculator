@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # calculator
 
 A small and simple Flutter calculator, created to practice Flutter.
