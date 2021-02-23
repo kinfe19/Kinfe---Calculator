@@ -33,7 +33,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     lintOptions { 
-    checkReleaseBuilds false
+        checkReleaseBuilds false
     }
     
     compileSdkVersion 30
