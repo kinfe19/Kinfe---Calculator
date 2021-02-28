@@ -1,4 +1,5 @@
 import 'buttons.dart';
+import 'drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:flutter/services.dart';
@@ -64,42 +65,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Colors.teal,
       ),
-      drawer: Drawer(
-          child: Container(
-        color: Colors.teal[100],
-        child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-          Container(
-            height: 87,
-            child: DrawerHeader(
-              child: Text(
-                'Navigation',
-                style: TextStyle(fontSize: 30),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.teal,
-              ),
-            ),
-          ),
-          ListTile(
-            title: Text('Calculator'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('History'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => History()),
-              );
-            },
-          ),
-        ]),
-      )),
+      drawer: drawer(context),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -312,42 +278,7 @@ class _HistoryState extends State<History> {
             )
           ],
         ),
-        drawer: Drawer(
-            child: Container(
-          color: Colors.teal[100],
-          child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-            Container(
-              height: 87,
-              child: DrawerHeader(
-                child: Text(
-                  'Navigation',
-                  style: TextStyle(fontSize: 30),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.teal,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Calculator'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-              },
-            ),
-            ListTile(
-              title: Text('History'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => History()),
-                );
-              },
-            ),
-          ]),
-        )),
+        drawer: drawer(context),
         body: ListView.builder(
             itemCount: history.length,
             itemBuilder: (context, index) {
