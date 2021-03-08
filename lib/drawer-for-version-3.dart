@@ -35,6 +35,15 @@ Drawer drawer(BuildContext context) {
                   MaterialPageRoute(builder: (context) => History()),
                 );
               },
-            )
+            ),
+            ListTile(
+              title: Text('Color Theme Picker'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => History()),
+                );
+              },
+            ),
           ])));
 }
