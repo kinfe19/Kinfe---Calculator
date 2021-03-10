@@ -149,13 +149,13 @@ class _HomePageState extends State<HomePage> {
                 else if (index == 18) {
                   return MyButton(
                       buttonTapped: () {
-                        var temp = userQuestion.length + userAnswer.length;
-                        if (temp > 17) {
+                        if ((userQuestion.length + userAnswer.length) > 17) {
+                          var temp =
+                              (userQuestion.length + userAnswer.length) - 17;
+                          userQuestion += tempA;
                           setState(() {
-                            // ignore: deprecated_member_use
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                                content: Text(
-                                    'Maximum number of digits (17) exceeded.')));
+                            userQuestion = userQuestion.substring(
+                                0, userQuestion.length - temp);
                           });
                         } else {
                           setState(() {

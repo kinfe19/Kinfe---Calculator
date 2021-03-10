@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'version-3-stable.dart';
 
 Drawer drawer(BuildContext context) {
   return Drawer(
@@ -35,15 +35,6 @@ Drawer drawer(BuildContext context) {
                   MaterialPageRoute(builder: (context) => History()),
                 );
               },
-            ),
-            ListTile(
-              title: Text('Color Theme Picker'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => History()),
-                );
-              },
-            ),
+            )
           ])));
 }

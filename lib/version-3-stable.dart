@@ -1,5 +1,5 @@
 import 'buttons.dart';
-import 'drawer.dart';
+import 'drawer-for-version-3.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:flutter/services.dart';
@@ -149,13 +149,13 @@ class _HomePageState extends State<HomePage> {
                 else if (index == 18) {
                   return MyButton(
                       buttonTapped: () {
-                        if ((userQuestion.length + userAnswer.length) > 17) {
-                          var temp =
-                              (userQuestion.length + userAnswer.length) - 17;
-                          userQuestion += tempA;
+                        var temp = userQuestion.length + userAnswer.length;
+                        if (temp > 17) {
                           setState(() {
-                            userQuestion = userQuestion.substring(
-                                0, userQuestion.length - temp);
+                            // ignore: deprecated_member_use
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'Maximum number of digits (17) exceeded.')));
                           });
                         } else {
                           setState(() {
