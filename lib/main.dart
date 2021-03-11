@@ -17,6 +17,7 @@ double fontSize = 30;
 
 List history = [];
 List answerHistory = [];
+List changeThings = [];
 
 class MyApp extends StatelessWidget {
   @override
@@ -309,6 +310,41 @@ class _HistoryState extends State<History> {
                   ],
                 ),
               );
+            }));
+  }
+}
+
+class Color extends StatefulWidget {
+  @override
+  _ColorState createState() => _ColorState();
+}
+
+class _ColorState extends State<Color> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Color Theme Picker'),
+          centerTitle: true,
+        ),
+        drawer: drawer(context),
+        body: ListView.builder(
+            itemCount: changeThings.length,
+            itemBuilder: (context, index) {
+              return ListView(padding: EdgeInsets.zero, children: <Widget>[
+                ListTile(
+                  title: Text('Calculator Theme Picker'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text('Drawer Theme Picker'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text('History Theme Picker'),
+                  onTap: () {},
+                )
+              ]);
             }));
   }
 }

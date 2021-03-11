@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'version-3-stable.dart';
+import 'main.dart';
 
 Drawer drawer(BuildContext context) {
   return Drawer(
@@ -41,7 +41,7 @@ Drawer drawer(BuildContext context) {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => History()),
+                  MaterialPageRoute(builder: (context) => Color()),
                 );
               },
             )
