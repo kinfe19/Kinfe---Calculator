@@ -1,4 +1,4 @@
-# calculator
+# Calculator
 
 A small and simple Flutter calculator, created to practice Flutter. Link to the app: https://play.google.com/store/apps/details?id=com.banik1103.calculator2
 
