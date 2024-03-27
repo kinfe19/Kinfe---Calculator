@@ -1,6 +1,6 @@
 # Calculator
 
-A small and simple Flutter calculator, created to practice Flutter. Link to the app: https://play.google.com/store/apps/details?id=com.banik1103.calculator2
+
 
 ## Getting Started
 
@@ -9,3 +9,5 @@ In order to run this, make sure that you have Flutter installed. Download the fi
 ## Picture of the app:
 
 ![](Screenshot-for-Readme/calculator-app-screenhot.jpg)
+
+###Developer: @Kinfe19
