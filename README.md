@@ -1,10 +1,26 @@
 # Calculator
 
 
+This is a simple calculator .
+
+## Features
+
+- Addition
+- Subtraction
+- Multiplication
+- Division
 
 ## Getting Started
 
-In order to run this, make sure that you have Flutter installed. Download the files, and run main.dart, it is located in the lib folder. You can also download the app from the Google Play Store if you have an Android device, the link to it is in the message above.
+### Prerequisites
+
+- [Insert any prerequisites here, such as the language runtime or dependencies]
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue for any bugs or feature requests.
+
+
 
 ## Picture of the app:
 
