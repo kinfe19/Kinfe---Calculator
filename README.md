@@ -8,6 +8,8 @@ In order to run this, make sure that you have Flutter installed. Download the fi
 
 ## Picture of the app:
 
-![](Screenshot-for-Readme/calculator-app-screenhot.jpg)
+![image](https://github.com/kinfe19/Kinfe---Calculator/assets/81519060/e2bd08a2-c3da-46fa-a503-388fbf4d59ed)
+
+![image](https://github.com/kinfe19/Kinfe---Calculator/assets/81519060/ddff9b8b-b237-4ae6-a7ce-bbaf114ee93c)
 
 ### Developer: @Kinfe19
