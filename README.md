@@ -10,4 +10,4 @@ In order to run this, make sure that you have Flutter installed. Download the fi
 
 ![](Screenshot-for-Readme/calculator-app-screenhot.jpg)
 
-###Developer: @Kinfe19
+### Developer: @Kinfe19
